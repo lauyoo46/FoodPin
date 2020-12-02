@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		19ACE39C25779FC600555BE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ACE39B25779FC600555BE2 /* AppDelegate.swift */; };
 		19ACE39E25779FC600555BE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ACE39D25779FC600555BE2 /* SceneDelegate.swift */; };
-		19ACE3A025779FC600555BE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ACE39F25779FC600555BE2 /* ViewController.swift */; };
+		19ACE3A025779FC600555BE2 /* FoodPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19ACE39F25779FC600555BE2 /* FoodPinViewController.swift */; };
 		19ACE3A325779FC600555BE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19ACE3A125779FC600555BE2 /* Main.storyboard */; };
 		19ACE3A525779FCF00555BE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19ACE3A425779FCF00555BE2 /* Assets.xcassets */; };
 		19ACE3A825779FCF00555BE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19ACE3A625779FCF00555BE2 /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		19ACE39825779FC600555BE2 /* FoodPin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19ACE39B25779FC600555BE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19ACE39D25779FC600555BE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		19ACE39F25779FC600555BE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		19ACE39F25779FC600555BE2 /* FoodPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPinViewController.swift; sourceTree = "<group>"; };
 		19ACE3A225779FC600555BE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		19ACE3A425779FCF00555BE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19ACE3A725779FCF00555BE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 			children = (
 				19ACE39B25779FC600555BE2 /* AppDelegate.swift */,
 				19ACE39D25779FC600555BE2 /* SceneDelegate.swift */,
-				19ACE39F25779FC600555BE2 /* ViewController.swift */,
+				19ACE39F25779FC600555BE2 /* FoodPinViewController.swift */,
 				19ACE3A125779FC600555BE2 /* Main.storyboard */,
 				19ACE3A425779FCF00555BE2 /* Assets.xcassets */,
 				19ACE3A625779FCF00555BE2 /* LaunchScreen.storyboard */,
@@ -77,6 +77,7 @@
 				19ACE39425779FC600555BE2 /* Sources */,
 				19ACE39525779FC600555BE2 /* Frameworks */,
 				19ACE39625779FC600555BE2 /* Resources */,
+				19ACE3B02577A03300555BE2 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -132,12 +133,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19ACE3B02577A03300555BE2 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		19ACE39425779FC600555BE2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19ACE3A025779FC600555BE2 /* ViewController.swift in Sources */,
+				19ACE3A025779FC600555BE2 /* FoodPinViewController.swift in Sources */,
 				19ACE39C25779FC600555BE2 /* AppDelegate.swift in Sources */,
 				19ACE39E25779FC600555BE2 /* SceneDelegate.swift in Sources */,
 			);
