@@ -9,12 +9,19 @@ import UIKit
 
 class FoodPinViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var restaurantNames = ["Cafe Deadend", "Homei", "Teakha", "Cafe Loisl", "P etite Oyster",
+    var restaurantNames = ["Cafe Deadend", "Homei", "Teakha", "Cafe Loisl", "Petite Oyster",
                            "For Kee Restaurant", "Po's Atelier", "Bourke Street Bakery" ,
                            "Haigh's Chocolate", "Palomino Espresso", "Upstate", "Traif",
-                           "Graham Av enue Meats And Deli", "Waffle & Wolf", "Five Leaves",
-                           "Cafe Lore", "Confes sional", "Barrafina", "Donostia", "Royal Oak",
+                           "Graham Avenue Meats And Deli", "Waffle & Wolf", "Five Leaves",
+                           "Cafe Lore", "Confessional", "Barrafina", "Donostia", "Royal Oak",
                            "CASK Pub and Kitchen"]
+    
+    var restaurantImages = ["Cafe Deadend", "Homei", "Teakha", "Cafe Loisl", "Petite Oyster",
+                            "For Kee Restaurant", "Po's Atelier", "Bourke Street Bakery" ,
+                            "Haigh's Chocolate", "Palomino Espresso", "Upstate", "Traif",
+                            "Graham Avenue Meats And Deli", "Waffle & Wolf", "Five Leaves",
+                            "Cafe Lore", "Confessional", "Barrafina", "Donostia", "Royal Oak",
+                            "CASK Pub and Kitchen"]
 
     override var prefersStatusBarHidden: Bool {
         return true
@@ -29,7 +36,7 @@ class FoodPinViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         cell.textLabel?.text = restaurantNames[indexPath.row]
-        cell.imageView?.image = UIImage(named: "restaurant")
+        cell.imageView?.image = UIImage(named: restaurantImages[indexPath.row])
         
         return cell
     }
