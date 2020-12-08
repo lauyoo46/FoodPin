@@ -86,9 +86,20 @@ class RestaurantTableViewController: UITableViewController {
                                           handler: { (action:UIAlertAction!) -> Void in
                                                 let cell = tableView.cellForRow(at: indexPath)
                                                 cell?.accessoryType = .checkmark
-                                            self.restaurantIsVisited[indexPath.row] = true
+                                                self.restaurantIsVisited[indexPath.row] = true
                                           })
-        optionMenu.addAction(checkInAction)
+        let uncheckAction = UIAlertAction(title: "Uncheck",
+                                          style: .default,
+                                          handler: { (action: UIAlertAction!) -> Void in
+                                                let cell = tableView.cellForRow(at: indexPath)
+                                                cell?.accessoryType = .none
+                                                self.restaurantIsVisited[indexPath.row] = false
+                                          })
+        if restaurantIsVisited[indexPath.row] == false {
+            optionMenu.addAction(checkInAction)
+        } else {
+            optionMenu.addAction(uncheckAction)
+        }
         
         present(optionMenu, animated: true, completion: nil)
         
