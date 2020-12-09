@@ -46,9 +46,9 @@ class RestaurantTableViewController: UITableViewController {
             safeCell.nameLabel.text = restaurantNames[indexPath.row]
             safeCell.thumbnailImageView.image = UIImage(named: restaurantImages[indexPath.row])
             if restaurantIsVisited[indexPath.row] {
-                cell?.accessoryType = .checkmark
+                cell?.checkmarkImage.isHidden = false
             } else {
-                cell?.accessoryType = .none
+                cell?.checkmarkImage.isHidden = true
             }
             return safeCell
         }
@@ -84,11 +84,27 @@ class RestaurantTableViewController: UITableViewController {
         let checkInAction = UIAlertAction(title: "Check in",
                                           style: .default,
                                           handler: { (action:UIAlertAction!) -> Void in
-                                                let cell = tableView.cellForRow(at: indexPath)
-                                                cell?.accessoryType = .checkmark
-                                            self.restaurantIsVisited[indexPath.row] = true
+                                                let cell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell
+                                                if let safeCell = cell {
+                                                    safeCell.checkmarkImage.isHidden = false
+                                                    self.restaurantIsVisited[indexPath.row] = true
+                                                }
+                                                
                                           })
-        optionMenu.addAction(checkInAction)
+        let uncheckAction = UIAlertAction(title: "Uncheck",
+                                          style: .default,
+                                          handler: { (action: UIAlertAction!) -> Void in
+                                                let cell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell
+                                                if let safeCell = cell {
+                                                    safeCell.checkmarkImage.isHidden = true
+                                                    self.restaurantIsVisited[indexPath.row] = true
+                                                }
+                                          })
+        if restaurantIsVisited[indexPath.row] == false {
+            optionMenu.addAction(checkInAction)
+        } else {
+            optionMenu.addAction(uncheckAction)
+        }
         
         present(optionMenu, animated: true, completion: nil)
         
