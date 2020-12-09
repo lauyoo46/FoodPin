@@ -107,24 +107,52 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fFG-ga-DIf">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jcl-4J-Ady">
+                                <rect key="frame" x="174.33333333333334" y="371.66666666666669" width="41.333333333333343" height="101"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VS5-ep-zjG">
+                                        <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOd-lR-d4U">
+                                        <rect key="frame" x="0.0" y="40.333333333333314" width="41.333333333333336" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkD-S4-zaC">
+                                        <rect key="frame" x="0.0" y="80.666666666666629" width="41.333333333333336" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pHJ-VG-Uwa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="fFG-ga-DIf" secondAttribute="bottom" id="Eee-uJ-dyI"/>
                             <constraint firstItem="fFG-ga-DIf" firstAttribute="top" secondItem="mIe-ol-gka" secondAttribute="top" id="eN0-4P-z5V"/>
+                            <constraint firstItem="jcl-4J-Ady" firstAttribute="centerY" secondItem="mIe-ol-gka" secondAttribute="centerY" id="ehT-wv-HEf"/>
                             <constraint firstItem="pHJ-VG-Uwa" firstAttribute="trailing" secondItem="fFG-ga-DIf" secondAttribute="trailing" id="rWp-dX-Rq8"/>
                             <constraint firstItem="fFG-ga-DIf" firstAttribute="leading" secondItem="pHJ-VG-Uwa" secondAttribute="leading" id="w0H-X2-KKA"/>
+                            <constraint firstItem="jcl-4J-Ady" firstAttribute="centerX" secondItem="mIe-ol-gka" secondAttribute="centerX" id="ypJ-cm-Ihy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bbz-He-N6c"/>
                     <connections>
                         <outlet property="restaurantImageView" destination="fFG-ga-DIf" id="rES-ks-3kl"/>
+                        <outlet property="restaurantLocationLabel" destination="YkD-S4-zaC" id="UeZ-My-zgg"/>
+                        <outlet property="restaurantNameLabel" destination="VS5-ep-zjG" id="pT9-by-2wb"/>
+                        <outlet property="restaurantTypeLabel" destination="xOd-lR-d4U" id="Pbs-uG-Ox1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgQ-yE-E5b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="517" y="-370"/>
+            <point key="canvasLocation" x="449" y="-324"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W74-X0-xai">
