@@ -21,6 +21,7 @@ class RestaurantTableViewController: UITableViewController {
                             "Graham Avenue Meats And Deli", "Waffle & Wolf", "Five Leaves", "Cafe Lore",
                             "Confessional", "Barrafina", "Donostia", "Royal Oak", "CASK Pub and Kitchen"]
     
+
     var restaurantLocations = ["Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong",
                                "Hong Kong", "Hong Kong", "Sydney", "Sydney", "Sydney",
                                "New York", "New York", "New York", "New York", "New York", "New York",
@@ -55,6 +56,7 @@ class RestaurantTableViewController: UITableViewController {
         if let safeCell = cell {
             safeCell.nameLabel.text = restaurantNames[indexPath.row]
             safeCell.thumbnailImageView.image = UIImage(named: restaurantImages[indexPath.row])
+
             safeCell.locationLabel.text = restaurantLocations[indexPath.row]
             safeCell.typeLabel.text = restaurantTypes[indexPath.row]
             if restaurantIsVisited[indexPath.row] {
@@ -117,7 +119,6 @@ class RestaurantTableViewController: UITableViewController {
         } else {
             optionMenu.addAction(uncheckAction)
         }
-        
         present(optionMenu, animated: true, completion: nil)
         
         tableView.deselectRow(at: indexPath, animated: false)
@@ -168,5 +169,4 @@ class RestaurantTableViewController: UITableViewController {
         let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
         return swipeConfiguration
     }
-
 }
