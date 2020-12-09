@@ -14,7 +14,8 @@
 		19ACE3A325779FC600555BE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19ACE3A125779FC600555BE2 /* Main.storyboard */; };
 		19ACE3A525779FCF00555BE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19ACE3A425779FCF00555BE2 /* Assets.xcassets */; };
 		19ACE3A825779FCF00555BE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19ACE3A625779FCF00555BE2 /* LaunchScreen.storyboard */; };
-		366119652580C3B90026DFB6 /* FoodPinColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366119642580C3B90026DFB6 /* FoodPinColor.swift */; };
+		3661195C2580BF1E0026DFB6 /* FoodPinColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661195B2580BF1E0026DFB6 /* FoodPinColor.swift */; };
+		3661196C2580D0C90026DFB6 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661196B2580D0C90026DFB6 /* RestaurantDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +28,8 @@
 		19ACE3A425779FCF00555BE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19ACE3A725779FCF00555BE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		19ACE3A925779FCF00555BE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		366119642580C3B90026DFB6 /* FoodPinColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPinColor.swift; sourceTree = "<group>"; };
+		3661195B2580BF1E0026DFB6 /* FoodPinColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPinColor.swift; sourceTree = "<group>"; };
+		3661196B2580D0C90026DFB6 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +65,10 @@
 				19ACE39B25779FC600555BE2 /* AppDelegate.swift */,
 				19ACE39D25779FC600555BE2 /* SceneDelegate.swift */,
 				19ACE3A125779FC600555BE2 /* Main.storyboard */,
-				366119642580C3B90026DFB6 /* FoodPinColor.swift */,
+				3661195B2580BF1E0026DFB6 /* FoodPinColor.swift */,
 				199657C12578D53B00A4A3AE /* RestaurantTableViewController.swift */,
 				199657C42578E03100A4A3AE /* RestaurantTableViewCell.swift */,
+				3661196B2580D0C90026DFB6 /* RestaurantDetailViewController.swift */,
 				19ACE3A425779FCF00555BE2 /* Assets.xcassets */,
 				19ACE3A625779FCF00555BE2 /* LaunchScreen.storyboard */,
 				19ACE3A925779FCF00555BE2 /* Info.plist */,
@@ -167,8 +170,9 @@
 			files = (
 				199657C52578E03100A4A3AE /* RestaurantTableViewCell.swift in Sources */,
 				19ACE39C25779FC600555BE2 /* AppDelegate.swift in Sources */,
-				366119652580C3B90026DFB6 /* FoodPinColor.swift in Sources */,
+				3661195C2580BF1E0026DFB6 /* FoodPinColor.swift in Sources */,
 				19ACE39E25779FC600555BE2 /* SceneDelegate.swift in Sources */,
+				3661196C2580D0C90026DFB6 /* RestaurantDetailViewController.swift in Sources */,
 				199657C22578D53B00A4A3AE /* RestaurantTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,8 +20,7 @@ class RestaurantTableViewController: UITableViewController {
                             "Haigh's Chocolate", "Palomino Espresso", "Upstate", "Traif",
                             "Graham Avenue Meats And Deli", "Waffle & Wolf", "Five Leaves", "Cafe Lore",
                             "Confessional", "Barrafina", "Donostia", "Royal Oak", "CASK Pub and Kitchen"]
-    
-
+   
     var restaurantLocations = ["Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong",
                                "Hong Kong", "Hong Kong", "Sydney", "Sydney", "Sydney",
                                "New York", "New York", "New York", "New York", "New York", "New York",
@@ -37,6 +36,7 @@ class RestaurantTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.cellLayoutMarginsFollowReadableWidth = true
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: - Table view data source
@@ -56,7 +56,6 @@ class RestaurantTableViewController: UITableViewController {
         if let safeCell = cell {
             safeCell.nameLabel.text = restaurantNames[indexPath.row]
             safeCell.thumbnailImageView.image = UIImage(named: restaurantImages[indexPath.row])
-
             safeCell.locationLabel.text = restaurantLocations[indexPath.row]
             safeCell.typeLabel.text = restaurantTypes[indexPath.row]
             if restaurantIsVisited[indexPath.row] {
@@ -68,60 +67,6 @@ class RestaurantTableViewController: UITableViewController {
         }
         
         return UITableViewCell()
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
-        
-        if let popoverController = optionMenu.popoverPresentationController {
-            if let cell = tableView.cellForRow(at: indexPath) {
-                popoverController.sourceView = cell
-                popoverController.sourceRect = cell.bounds
-            }
-        }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        optionMenu.addAction(cancelAction)
-        
-        let callActionHandler = { (action: UIAlertAction!) -> Void in
-            let alertMessage = UIAlertController(title: "Service Unavailable",
-                                                 message: "Sorry, the call feature is not available yet. Please retry later.",
-                                                 preferredStyle: .alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertMessage, animated: true, completion: nil)
-        }
-        let callAction = UIAlertAction(title: "Call " + "123-000-\(indexPath.row)",
-                                       style: .default,
-                                       handler: callActionHandler)
-        optionMenu.addAction(callAction)
-        
-        let checkInAction = UIAlertAction(title: "Check in",
-                                          style: .default,
-                                          handler: { (action:UIAlertAction!) -> Void in
-                                                let cell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell
-                                                if let safeCell = cell {
-                                                    safeCell.checkmarkImage.isHidden = false
-                                                    self.restaurantIsVisited[indexPath.row] = true
-                                                }
-                                                
-                                          })
-        let uncheckAction = UIAlertAction(title: "Uncheck",
-                                          style: .default,
-                                          handler: { (action: UIAlertAction!) -> Void in
-                                                let cell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell
-                                                if let safeCell = cell {
-                                                    safeCell.checkmarkImage.isHidden = true
-                                                    self.restaurantIsVisited[indexPath.row] = true
-                                                }
-                                          })
-        if restaurantIsVisited[indexPath.row] == false {
-            optionMenu.addAction(checkInAction)
-        } else {
-            optionMenu.addAction(uncheckAction)
-        }
-        present(optionMenu, animated: true, completion: nil)
-        
-        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     override func tableView(_ tableView: UITableView,
@@ -168,5 +113,52 @@ class RestaurantTableViewController: UITableViewController {
         
         let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
         return swipeConfiguration
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                              leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+                              -> UISwipeActionsConfiguration?{
+        let checkInAction = UIContextualAction(style: .normal, title: "Check in")
+        { (action, sourceView, completionHandler) in
+            if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+                safeCell.checkmarkImage.isHidden = false
+                self.restaurantIsVisited[indexPath.row] = true
+            }
+            completionHandler(true)
+        }
+        
+        let uncheckAction = UIContextualAction(style: .normal, title: "Uncheck")
+        { (action, sourceView, completionHandler) in
+            if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+                safeCell.checkmarkImage.isHidden = true
+                self.restaurantIsVisited[indexPath.row] = false
+            }
+            completionHandler(true)
+        }
+        
+        checkInAction.backgroundColor = FoodPin.Color.checkGreen.uiColor
+        checkInAction.image = UIImage(systemName: "checkmark")
+        uncheckAction.backgroundColor = FoodPin.Color.checkGreen.uiColor
+        uncheckAction.image = UIImage(systemName: "arrow.uturn.left")
+        
+        var swipeConfiguration: UISwipeActionsConfiguration = UISwipeActionsConfiguration(actions: [])
+        if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+            if safeCell.checkmarkImage.isHidden == false {
+                swipeConfiguration = UISwipeActionsConfiguration(actions: [uncheckAction])
+            } else {
+                swipeConfiguration = UISwipeActionsConfiguration(actions: [checkInAction])
+            }
+        }
+        
+        return swipeConfiguration
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showRestaurantDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let destinationController = segue.destination as! RestaurantDetailViewController
+                destinationController.restaurantImageName = restaurantImages[indexPath.row]
+            }
+        }
     }
 }
