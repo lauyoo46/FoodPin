@@ -20,7 +20,7 @@ class RestaurantTableViewController: UITableViewController {
                             "Haigh's Chocolate", "Palomino Espresso", "Upstate", "Traif",
                             "Graham Avenue Meats And Deli", "Waffle & Wolf", "Five Leaves", "Cafe Lore",
                             "Confessional", "Barrafina", "Donostia", "Royal Oak", "CASK Pub and Kitchen"]
-    
+   
     var restaurantLocations = ["Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong",
                                "Hong Kong", "Hong Kong", "Sydney", "Sydney", "Sydney",
                                "New York", "New York", "New York", "New York", "New York", "New York",
@@ -161,5 +161,4 @@ class RestaurantTableViewController: UITableViewController {
             }
         }
     }
-    
 }
