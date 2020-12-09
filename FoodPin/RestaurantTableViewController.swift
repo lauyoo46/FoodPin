@@ -21,6 +21,17 @@ class RestaurantTableViewController: UITableViewController {
                             "Graham Avenue Meats And Deli", "Waffle & Wolf", "Five Leaves", "Cafe Lore",
                             "Confessional", "Barrafina", "Donostia", "Royal Oak", "CASK Pub and Kitchen"]
     
+
+    var restaurantLocations = ["Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong",
+                               "Hong Kong", "Hong Kong", "Sydney", "Sydney", "Sydney",
+                               "New York", "New York", "New York", "New York", "New York", "New York",
+                               "New York", "London", "London", "London", "London"]
+    
+    var restaurantTypes = ["Coffee & Tea Shop", "Cafe", "Tea House", "Austrian / Causual Drink",
+                           "French", "Bakery", "Bakery", "Chocolate", "Cafe", "American / Seafood",
+                           "American", "American", "Breakfast & Brunch", "Coffee & Tea", "Coffee & Tea",
+                           "Latin American", "Spanish", "Spanish", "Spanish", " British", "Thai"]
+    
     var restaurantIsVisited = Array(repeating: false, count: 21)
     
     override func viewDidLoad() {
@@ -45,10 +56,13 @@ class RestaurantTableViewController: UITableViewController {
         if let safeCell = cell {
             safeCell.nameLabel.text = restaurantNames[indexPath.row]
             safeCell.thumbnailImageView.image = UIImage(named: restaurantImages[indexPath.row])
+
+            safeCell.locationLabel.text = restaurantLocations[indexPath.row]
+            safeCell.typeLabel.text = restaurantTypes[indexPath.row]
             if restaurantIsVisited[indexPath.row] {
-                cell?.accessoryType = .checkmark
+                cell?.checkmarkImage.isHidden = false
             } else {
-                cell?.accessoryType = .none
+                cell?.checkmarkImage.isHidden = true
             }
             return safeCell
         }
@@ -84,15 +98,75 @@ class RestaurantTableViewController: UITableViewController {
         let checkInAction = UIAlertAction(title: "Check in",
                                           style: .default,
                                           handler: { (action:UIAlertAction!) -> Void in
-                                                let cell = tableView.cellForRow(at: indexPath)
-                                                cell?.accessoryType = .checkmark
-                                            self.restaurantIsVisited[indexPath.row] = true
+                                                let cell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell
+                                                if let safeCell = cell {
+                                                    safeCell.checkmarkImage.isHidden = false
+                                                    self.restaurantIsVisited[indexPath.row] = true
+                                                }
+                                                
                                           })
-        optionMenu.addAction(checkInAction)
-        
+        let uncheckAction = UIAlertAction(title: "Uncheck",
+                                          style: .default,
+                                          handler: { (action: UIAlertAction!) -> Void in
+                                                let cell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell
+                                                if let safeCell = cell {
+                                                    safeCell.checkmarkImage.isHidden = true
+                                                    self.restaurantIsVisited[indexPath.row] = true
+                                                }
+                                          })
+        if restaurantIsVisited[indexPath.row] == false {
+            optionMenu.addAction(checkInAction)
+        } else {
+            optionMenu.addAction(uncheckAction)
+        }
         present(optionMenu, animated: true, completion: nil)
         
         tableView.deselectRow(at: indexPath, animated: false)
     }
-
+    
+    override func tableView(_ tableView: UITableView,
+                              trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+                            -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete")
+        { (action, sourceView, completionHandler) in
+            self.restaurantNames.remove(at: indexPath.row)
+            self.restaurantLocations.remove(at: indexPath.row)
+            self.restaurantTypes.remove(at: indexPath.row)
+            self.restaurantIsVisited.remove(at: indexPath.row)
+            self.restaurantImages.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+                completionHandler(true)
+        }
+        
+        let shareAction = UIContextualAction(style: .normal, title: "Share")
+        { (action, sourceView, completionHandler) in
+            let defaultText = "Just checking in at " + self.restaurantNames[indexPath.row]
+            let activityController: UIActivityViewController
+            if let imageToShare = UIImage(named: self.restaurantImages[indexPath.row]) {
+                activityController = UIActivityViewController(activityItems:
+                                     [ defaultText, imageToShare], applicationActivities: nil)
+            } else {
+                activityController = UIActivityViewController(activityItems: [defaultText],
+                                     applicationActivities: nil)
+            }
+            
+            if let popoverController = activityController.popoverPresentationController {
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    popoverController.sourceView = cell
+                    popoverController.sourceRect = cell.bounds
+                }
+            }
+            
+            self.present(activityController, animated: true, completion: nil)
+                completionHandler(true)
+        }
+        
+        deleteAction.backgroundColor = FoodPin.Color.deleteRed.uiColor
+        deleteAction.image = UIImage(systemName: "trash")
+        shareAction.backgroundColor = FoodPin.Color.shareOrange.uiColor
+        shareAction.image = UIImage(systemName: "square.and.arrow.up")
+        
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
+        return swipeConfiguration
+    }
 }

@@ -18,4 +18,5 @@ class RestaurantTableViewCell: UITableViewCell {
             thumbnailImageView.clipsToBounds = true 
         }
     }
+    @IBOutlet var checkmarkImage: UIImageView!
 }
