@@ -160,12 +160,50 @@ class RestaurantTableViewController: UITableViewController {
                 completionHandler(true)
         }
         
-        deleteAction.backgroundColor = UIColor(red: 231.0/255.0, green: 76.0/255.0 , blue: 60.0/255.0, alpha: 1.0)
+        deleteAction.backgroundColor = FoodPin.Color.deleteRed.uiColor
         deleteAction.image = UIImage(systemName: "trash")
-        shareAction.backgroundColor = UIColor(red: 254.0/255.0, green: 149.0/255.0 , blue: 38.0/255.0, alpha: 1.0)
+        shareAction.backgroundColor = FoodPin.Color.shareOrange.uiColor
         shareAction.image = UIImage(systemName: "square.and.arrow.up")
         
         let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
+        return swipeConfiguration
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                              leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+                              -> UISwipeActionsConfiguration?{
+        let checkInAction = UIContextualAction(style: .normal, title: "Check in")
+        { (action, sourceView, completionHandler) in
+            if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+                safeCell.checkmarkImage.isHidden = false
+                self.restaurantIsVisited[indexPath.row] = true
+            }
+            completionHandler(true)
+        }
+        
+        let uncheckAction = UIContextualAction(style: .normal, title: "Uncheck")
+        { (action, sourceView, completionHandler) in
+            if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+                safeCell.checkmarkImage.isHidden = true
+                self.restaurantIsVisited[indexPath.row] = false
+            }
+            completionHandler(true)
+        }
+        
+        checkInAction.backgroundColor = FoodPin.Color.checkGreen.uiColor
+        checkInAction.image = UIImage(systemName: "checkmark")
+        uncheckAction.backgroundColor = FoodPin.Color.checkGreen.uiColor
+        uncheckAction.image = UIImage(systemName: "arrow.uturn.left")
+        
+        var swipeConfiguration: UISwipeActionsConfiguration = UISwipeActionsConfiguration(actions: [])
+        if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+            if safeCell.checkmarkImage.isHidden == false {
+                swipeConfiguration = UISwipeActionsConfiguration(actions: [uncheckAction])
+            } else {
+                swipeConfiguration = UISwipeActionsConfiguration(actions: [checkInAction])
+            }
+        }
+        
         return swipeConfiguration
     }
 
