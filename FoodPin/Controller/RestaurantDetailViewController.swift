@@ -9,20 +9,85 @@ import UIKit
 
 class RestaurantDetailViewController: UIViewController {
     
-    @IBOutlet weak var restaurantImageView: UIImageView!
-    @IBOutlet weak var restaurantNameLabel: UILabel!
-    @IBOutlet weak var restaurantTypeLabel: UILabel!
-    @IBOutlet weak var restaurantLocationLabel: UILabel!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var headerView: RestaurantDetailHeaderView!
     
     var restaurant = Restaurant()
     
+    // MARK: - View Controller life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        restaurantImageView.image = UIImage(named: restaurant.image)
-        restaurantNameLabel.text = restaurant.name
-        restaurantTypeLabel.text = restaurant.type
-        restaurantLocationLabel.text = restaurant.location
+        tableView.separatorStyle = .none
         navigationItem.largeTitleDisplayMode = .never
+        tableView.dataSource = self
+        headerView.nameLabel.text = restaurant.name
+        headerView.typeLabel.text = restaurant.type
+        headerView.headerImageView.image = UIImage(named: restaurant.image)
+        headerView.heartImageView.isHidden = (restaurant.isVisited) ? false : true 
     }
-
+    
 }
+
+    // MARK: - Table View Delegate
+
+extension RestaurantDetailViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        
+        case 0:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: RestaurantDetailIconTextCell.self),
+                for: indexPath) as? RestaurantDetailIconTextCell
+            
+            guard let safeCell = cell else {
+                return UITableViewCell()
+            }
+            safeCell.iconImageView.image = UIImage(systemName: "phone")?
+                .withTintColor(.black, renderingMode: .alwaysOriginal)
+            safeCell.shortTextLabel.text = restaurant.phone
+            safeCell.selectionStyle = .none
+            return safeCell
+            
+        case 1:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: RestaurantDetailIconTextCell.self),
+                for: indexPath) as? RestaurantDetailIconTextCell
+            
+            guard let safeCell = cell else {
+                return UITableViewCell()
+            }
+            safeCell.iconImageView.image = UIImage(systemName: "map")?
+                .withTintColor(.black, renderingMode: .alwaysOriginal)
+            safeCell.shortTextLabel.text = restaurant.location
+            safeCell.selectionStyle = .none
+            return safeCell
+            
+        case 2:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: RestaurantDetailTextCell.self),
+                for: indexPath) as? RestaurantDetailTextCell
+            
+            guard let safeCell = cell else {
+                return UITableViewCell()
+            }
+            safeCell.descriptionLabel.text = restaurant.description
+            safeCell.selectionStyle = .none
+            return safeCell
+            
+        default:
+            fatalError("Failed to instantiate the table view cell for detail view controller")
+            
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+}
+
