@@ -8,7 +8,7 @@
 import UIKit
 
 class RestaurantTableViewController: UITableViewController {
-
+    
     var restaurants:[Restaurant] = [
         Restaurant(name: "Cafe Deadend", type: "Coffee & Tea Shop", location: "G/F, 72 Po Hing Fong, Sheung Wan, Hong Kong", phone: "232-923423", description: "Searching for great breakfast eateries and coffee? This place is for you. We open at 6:30 every morning, and close at 9 PM. We offer espresso and espresso based drink, such as capuccino, cafe latte, piccolo and many more. Come over and enjoy a great meal.", image: "cafedeadend.jpg", isVisited: false),
         Restaurant(name: "Homei", type: "Cafe", location: "Shop B, G/F, 22-24A Tai Ping San Street SOHO, Sheung Wan, Hong Kong", phone: "348-233423", description: "A little gem hidden at the corner of the street is nothing but fantastic! This place is warm and cozy. We open at 7 every morning except Sunday, and close at 9 PM. We offer a variety of coffee drinks and specialties including lattes, cappuccinos, teas, and more. We serve breakfast, lunch, and dinner in an airy open setting. Come over, have a coffee and enjoy a chit-chat with our baristas.", image: "homei.jpg", isVisited: false),
@@ -44,8 +44,8 @@ class RestaurantTableViewController: UITableViewController {
         if let customFont = UIFont(name: "Rubik-Medium", size: 40.0) {
             navigationController?.navigationBar.largeTitleTextAttributes =
                 [ NSAttributedString.Key.foregroundColor:
-                UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0),
-                NSAttributedString.Key.font: customFont ]
+                  UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0),
+                  NSAttributedString.Key.font: customFont ]
         }
         navigationController?.hidesBarsOnSwipe = true 
     }
@@ -59,19 +59,19 @@ class RestaurantTableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return restaurants.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "datacell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RestaurantTableViewCell
-
+        
         if let safeCell = cell {
             safeCell.nameLabel.text = restaurants[indexPath.row].name
             safeCell.thumbnailImageView.image = UIImage(named: restaurants[indexPath.row].image)
@@ -89,13 +89,13 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView,
-                              trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
                             -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete")
         { (action, sourceView, completionHandler) in
             self.restaurants.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
-                completionHandler(true)
+            completionHandler(true)
         }
         
         let shareAction = UIContextualAction(style: .normal, title: "Share")
@@ -104,10 +104,10 @@ class RestaurantTableViewController: UITableViewController {
             let activityController: UIActivityViewController
             if let imageToShare = UIImage(named: self.restaurants[indexPath.row].image) {
                 activityController = UIActivityViewController(activityItems:
-                                     [ defaultText, imageToShare], applicationActivities: nil)
+                                                                [ defaultText, imageToShare], applicationActivities: nil)
             } else {
                 activityController = UIActivityViewController(activityItems: [defaultText],
-                                     applicationActivities: nil)
+                                                              applicationActivities: nil)
             }
             
             if let popoverController = activityController.popoverPresentationController {
@@ -118,7 +118,7 @@ class RestaurantTableViewController: UITableViewController {
             }
             
             self.present(activityController, animated: true, completion: nil)
-                completionHandler(true)
+            completionHandler(true)
         }
         
         deleteAction.backgroundColor = FoodPin.Color.deleteRed.uiColor
@@ -131,8 +131,8 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView,
-                              leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
-                              -> UISwipeActionsConfiguration?{
+                            leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+                            -> UISwipeActionsConfiguration?{
         let checkInAction = UIContextualAction(style: .normal, title: "Check in")
         { (action, sourceView, completionHandler) in
             if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
@@ -167,7 +167,7 @@ class RestaurantTableViewController: UITableViewController {
         
         return swipeConfiguration
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showRestaurantDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
