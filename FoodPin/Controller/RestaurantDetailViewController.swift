@@ -24,7 +24,22 @@ class RestaurantDetailViewController: UIViewController {
         headerView.nameLabel.text = restaurant.name
         headerView.typeLabel.text = restaurant.type
         headerView.headerImageView.image = UIImage(named: restaurant.image)
-        headerView.heartImageView.isHidden = (restaurant.isVisited) ? false : true 
+        headerView.heartImageView.isHidden = (restaurant.isVisited) ? false : true
+        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.tintColor = .white
+        tableView.contentInsetAdjustmentBehavior = .never
+        
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
 }
