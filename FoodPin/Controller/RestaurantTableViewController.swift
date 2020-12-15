@@ -57,7 +57,6 @@ class RestaurantTableViewController: UITableViewController {
         navigationController?.navigationBar.barStyle = .default
     }
     
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
