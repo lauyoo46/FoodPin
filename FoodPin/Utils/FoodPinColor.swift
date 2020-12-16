@@ -17,11 +17,11 @@ enum Color {
         switch self {
         
         case .shareOrange:
-            return UIColor(red: 254.0/255.0, green: 149.0/255.0 , blue: 38.0/255.0, alpha: 1.0)
+            return UIColor(red: 254.0/255.0, green: 149.0/255.0, blue: 38.0/255.0, alpha: 1.0)
         case .deleteRed:
-            return UIColor(red: 231.0/255.0, green: 76.0/255.0 , blue: 60.0/255.0, alpha: 1.0)
+            return UIColor(red: 231.0/255.0, green: 76.0/255.0, blue: 60.0/255.0, alpha: 1.0)
         case .checkGreen:
-            return UIColor(red: 35.0/255.0, green: 214.0/255.0 , blue: 0.0/255.0, alpha: 1.0)
+            return UIColor(red: 35.0/255.0, green: 214.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         }
     }
 }
