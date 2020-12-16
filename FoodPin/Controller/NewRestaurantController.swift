@@ -64,6 +64,60 @@ class NewRestaurantController: UITableViewController,
         }
     }
     
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let alert = UIAlertController(title: "Oops", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let newRestaurant = Restaurant()
+        
+        if let name = nameTextField.text {
+            if name == "" {
+                alert.message = "Name can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            newRestaurant.name = name
+        }
+        
+        if let type = typeTextField.text {
+            if type == "" {
+                alert.message = "Type can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            newRestaurant.type = type
+        }
+        
+        if let address = addressTextField.text {
+            if address == "" {
+                alert.message = "Address can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            newRestaurant.location = address
+        }
+        
+        if let phone = phoneTextField.text {
+            if phone == "" {
+                alert.message = "Phone can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            newRestaurant.phone = phone
+        }
+        
+        if let description = descriptionTextView.text {
+            if description == "" {
+                alert.message = "Description can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            newRestaurant.description = description
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
