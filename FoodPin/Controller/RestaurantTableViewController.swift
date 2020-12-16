@@ -278,6 +278,8 @@ class RestaurantTableViewController: UITableViewController {
         navigationController?.navigationBar.barStyle = .default
     }
     
+    @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
