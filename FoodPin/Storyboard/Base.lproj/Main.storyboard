@@ -64,11 +64,6 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="po8-dz-LhY" firstAttribute="centerX" secondItem="ZCM-rX-Ygc" secondAttribute="centerX" id="0Fw-Bx-pAK"/>
-                                                        <constraint firstItem="BCr-ek-nDG" firstAttribute="centerX" secondItem="ZCM-rX-Ygc" secondAttribute="centerX" id="5P9-nF-eAX"/>
-                                                        <constraint firstItem="rwk-H4-NRd" firstAttribute="centerX" secondItem="ZCM-rX-Ygc" secondAttribute="centerX" id="Mcv-Jx-qWY"/>
-                                                    </constraints>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-tick" translatesAutoresizingMaskIntoConstraints="NO" id="Pob-d1-SLD">
                                                     <rect key="frame" x="319" y="17.666666666666668" width="25" height="25.000000000000004"/>
@@ -410,14 +405,14 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="otl-Ra-2tO">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0V-KI-2Fd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0V-KI-2Fd" userLabel="Close Button">
                                 <rect key="frame" x="339" y="44" width="31" height="29.333333333333329"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="xmark" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Vm6-aV-X6A" kind="unwind" unwindAction="closeWithSegue:" id="mOc-U3-gaY"/>
+                                    <segue destination="Vm6-aV-X6A" kind="unwind" unwindAction="closeWithSegue:" id="RfP-8p-0LA"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-CV-JPw">
@@ -481,6 +476,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="otl-Ra-2tO" id="Vhz-pJ-KLM"/>
+                        <outlet property="closeButton" destination="a0V-KI-2Fd" id="ajP-nW-Poy"/>
                         <outletCollection property="rateButtons" destination="kyE-Ja-i4d" collectionClass="NSMutableArray" id="abU-nG-O4Y"/>
                         <outletCollection property="rateButtons" destination="GRB-3A-bt5" collectionClass="NSMutableArray" id="Bfg-YM-Ji4"/>
                         <outletCollection property="rateButtons" destination="lUK-i3-BGw" collectionClass="NSMutableArray" id="YpA-Gc-kaz"/>
