@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 class RestaurantDetailViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var headerView: RestaurantDetailHeaderView!
     
-    var restaurant = Restaurant()
+    var restaurant: RestaurantMO?
     
     // MARK: - View Controller life cycle
     
@@ -21,10 +22,6 @@ class RestaurantDetailViewController: UIViewController {
         tableView.separatorStyle = .none
         navigationItem.largeTitleDisplayMode = .never
         tableView.dataSource = self
-        headerView.nameLabel.text = restaurant.name
-        headerView.typeLabel.text = restaurant.type
-        headerView.headerImageView.image = UIImage(named: restaurant.image)
-        headerView.heartImageView.isHidden = (restaurant.isVisited) ? false : true
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -33,6 +30,18 @@ class RestaurantDetailViewController: UIViewController {
         
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.navigationBar.barStyle = .black
+        
+        headerView.nameLabel.text = restaurant?.name
+        headerView.typeLabel.text = restaurant?.type
+        
+        guard let safeRestaurant = restaurant else {
+            return
+        }
+        
+        headerView.headerImageView.image = UIImage(data: (safeRestaurant.image ?? Data()) as Data)
+        headerView.heartImageView.isHidden = safeRestaurant.isVisited ? false : true
+        headerView.ratingImageView.image = UIImage(named: safeRestaurant.rating ?? "")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,8 +71,13 @@ class RestaurantDetailViewController: UIViewController {
     @IBAction func rateRestaurant(segue: UIStoryboardSegue) {
         dismiss(animated: true, completion: {
             if let rating = segue.identifier {
-                self.restaurant.rating = rating
+                self.restaurant?.rating = rating
                 self.headerView.ratingImageView.image = UIImage(named: rating)
+                
+                if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                    appDelegate.saveContext()
+                }
+                
                 let scaleTransform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
                 self.headerView.ratingImageView.transform = scaleTransform
                 self.headerView.ratingImageView.alpha = 0
@@ -97,7 +111,10 @@ extension RestaurantDetailViewController: UITableViewDataSource {
             }
             safeCell.iconImageView.image = UIImage(systemName: "phone")?
                 .withTintColor(.black, renderingMode: .alwaysOriginal)
-            safeCell.shortTextLabel.text = restaurant.phone
+            guard let restaurantPhone = restaurant?.phone else {
+                return UITableViewCell()
+            }
+            safeCell.shortTextLabel.text = restaurantPhone
             safeCell.selectionStyle = .none
             return safeCell
             
@@ -111,7 +128,10 @@ extension RestaurantDetailViewController: UITableViewDataSource {
             }
             safeCell.iconImageView.image = UIImage(systemName: "map")?
                 .withTintColor(.black, renderingMode: .alwaysOriginal)
-            safeCell.shortTextLabel.text = restaurant.location
+            guard let restaurantLocation = restaurant?.location else {
+                return UITableViewCell()
+            }
+            safeCell.shortTextLabel.text = restaurantLocation
             safeCell.selectionStyle = .none
             return safeCell
             
@@ -123,7 +143,10 @@ extension RestaurantDetailViewController: UITableViewDataSource {
             guard let safeCell = cell else {
                 return UITableViewCell()
             }
-            safeCell.descriptionLabel.text = restaurant.description
+            guard let restaurantDescription = restaurant?.summary else {
+                return UITableViewCell()
+            }
+            safeCell.descriptionLabel.text = restaurantDescription
             safeCell.selectionStyle = .none
             return safeCell
             
@@ -145,7 +168,10 @@ extension RestaurantDetailViewController: UITableViewDataSource {
             guard let safeCell = cell else {
                 return UITableViewCell()
             }
-            safeCell.configure(location: restaurant.location)
+            guard let restaurantLocation = restaurant?.location else {
+                return UITableViewCell()
+            }
+            safeCell.configure(location: restaurantLocation)
             return safeCell
             
         default:
