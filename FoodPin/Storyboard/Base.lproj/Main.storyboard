@@ -64,11 +64,6 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="po8-dz-LhY" firstAttribute="centerX" secondItem="ZCM-rX-Ygc" secondAttribute="centerX" id="0Fw-Bx-pAK"/>
-                                                        <constraint firstItem="BCr-ek-nDG" firstAttribute="centerX" secondItem="ZCM-rX-Ygc" secondAttribute="centerX" id="5P9-nF-eAX"/>
-                                                        <constraint firstItem="rwk-H4-NRd" firstAttribute="centerX" secondItem="ZCM-rX-Ygc" secondAttribute="centerX" id="Mcv-Jx-qWY"/>
-                                                    </constraints>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-tick" translatesAutoresizingMaskIntoConstraints="NO" id="Pob-d1-SLD">
                                                     <rect key="frame" x="319" y="17.666666666666668" width="25" height="25.000000000000004"/>
@@ -105,6 +100,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Food Pin" id="ywc-uV-kXm">
                         <barButtonItem key="backBarButtonItem" title=" " id="jDD-SZ-TmA"/>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="F2g-VD-Kkl">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="bY3-H6-aZs" kind="presentation" identifier="addRestaurant" id="qWI-8a-nsk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oou-X4-y9S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -142,7 +143,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAb-Ni-mmr" userLabel="Name Label">
-                                            <rect key="frame" x="14" y="271.33333333333331" width="91.666666666666671" height="41.666666666666686"/>
+                                            <rect key="frame" x="14" y="272" width="85.666666666666671" height="41"/>
                                             <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="35"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -399,6 +400,228 @@
             </objects>
             <point key="canvasLocation" x="1419" y="-362"/>
         </scene>
+        <!--New Restaurant-->
+        <scene sceneID="WHF-aq-NMd">
+            <objects>
+                <tableViewController id="9lH-Wy-40H" customClass="NewRestaurantController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VqL-rO-slJ">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="bf2-Wq-Nju">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="U1y-G6-CLF">
+                                        <rect key="frame" x="0.0" y="28" width="390" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U1y-G6-CLF" id="eAR-Kz-yAy">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zpr-jL-Oft">
+                                                    <rect key="frame" x="183" y="91.333333333333343" width="24" height="18"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zpr-jL-Oft" firstAttribute="centerY" secondItem="eAR-Kz-yAy" secondAttribute="centerY" id="soy-8l-JmB"/>
+                                                <constraint firstItem="zpr-jL-Oft" firstAttribute="centerX" secondItem="eAR-Kz-yAy" secondAttribute="centerX" id="yIL-Fl-j0E"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="88" id="Gr2-4H-Zlh">
+                                        <rect key="frame" x="0.0" y="228" width="390" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gr2-4H-Zlh" id="iID-jl-AcG">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="88"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Q1C-mB-mzD">
+                                                    <rect key="frame" x="22" y="16" width="346" height="60"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtU-XM-hdu">
+                                                            <rect key="frame" x="0.0" y="0.0" width="346" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fill in the restaurant name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwC-wn-t3A" customClass="RoundedTextField" customModule="FoodPin" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="25.333333333333339" width="346" height="34.666666666666657"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Q1C-mB-mzD" firstAttribute="top" secondItem="iID-jl-AcG" secondAttribute="topMargin" constant="5" id="7b1-8s-n54"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Q1C-mB-mzD" secondAttribute="bottom" constant="1" id="8zE-E7-1s9"/>
+                                                <constraint firstItem="Q1C-mB-mzD" firstAttribute="leading" secondItem="iID-jl-AcG" secondAttribute="leadingMargin" constant="2" id="KeY-Jv-6tR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Q1C-mB-mzD" secondAttribute="trailing" constant="2" id="ruK-SI-KQN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="88" id="cgN-Fy-a8l">
+                                        <rect key="frame" x="0.0" y="316" width="390" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cgN-Fy-a8l" id="LMd-7d-lbF">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="88"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pCf-b7-Nyb">
+                                                    <rect key="frame" x="22" y="16" width="346" height="60"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TYPE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRl-IS-ORM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="346" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fill in the restaurant type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hKr-4m-C4y" customClass="RoundedTextField" customModule="FoodPin" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="25.333333333333339" width="346" height="34.666666666666657"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="pCf-b7-Nyb" secondAttribute="bottom" constant="1" id="CAC-MH-vLP"/>
+                                                <constraint firstItem="pCf-b7-Nyb" firstAttribute="leading" secondItem="LMd-7d-lbF" secondAttribute="leadingMargin" constant="2" id="Fns-aU-ofb"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pCf-b7-Nyb" secondAttribute="trailing" constant="2" id="RY8-TM-sr1"/>
+                                                <constraint firstItem="pCf-b7-Nyb" firstAttribute="top" secondItem="LMd-7d-lbF" secondAttribute="topMargin" constant="5" id="zFy-1N-IUo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="88" id="pmR-Gz-R2g">
+                                        <rect key="frame" x="0.0" y="404" width="390" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pmR-Gz-R2g" id="eyM-mQ-Cof">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="88"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Qki-Ja-jG4">
+                                                    <rect key="frame" x="22" y="16" width="346" height="60"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1P-oq-Plk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="346" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fill in the restaurant address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RrX-cA-UbB" customClass="RoundedTextField" customModule="FoodPin" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="25.333333333333339" width="346" height="34.666666666666657"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Qki-Ja-jG4" firstAttribute="top" secondItem="eyM-mQ-Cof" secondAttribute="topMargin" constant="5" id="AtR-nk-8DR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Qki-Ja-jG4" secondAttribute="trailing" constant="2" id="GYn-ls-DhK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Qki-Ja-jG4" secondAttribute="bottom" constant="1" id="cnR-gu-Wxt"/>
+                                                <constraint firstItem="Qki-Ja-jG4" firstAttribute="leading" secondItem="eyM-mQ-Cof" secondAttribute="leadingMargin" constant="2" id="fnA-Ey-6wR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="88" id="cei-32-kbm">
+                                        <rect key="frame" x="0.0" y="492" width="390" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cei-32-kbm" id="JhB-4J-KvJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="88"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="G8O-gL-ufb">
+                                                    <rect key="frame" x="22" y="16" width="346" height="60"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHONE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixq-7m-jAd">
+                                                            <rect key="frame" x="0.0" y="0.0" width="346" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fill in the restaurant phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DDr-4v-Qz8" customClass="RoundedTextField" customModule="FoodPin" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="25.333333333333339" width="346" height="34.666666666666657"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="G8O-gL-ufb" secondAttribute="bottom" constant="1" id="BRu-zq-fZU"/>
+                                                <constraint firstItem="G8O-gL-ufb" firstAttribute="top" secondItem="JhB-4J-KvJ" secondAttribute="topMargin" constant="5" id="j3s-NK-kpL"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="G8O-gL-ufb" secondAttribute="trailing" constant="2" id="rTK-Ef-5iu"/>
+                                                <constraint firstItem="G8O-gL-ufb" firstAttribute="leading" secondItem="JhB-4J-KvJ" secondAttribute="leadingMargin" constant="2" id="xus-VK-kf3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="125" id="gGy-in-xs0">
+                                        <rect key="frame" x="0.0" y="580" width="390" height="125"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gGy-in-xs0" id="iIv-5V-sQZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QjH-uo-SSa">
+                                                    <rect key="frame" x="22" y="16" width="346" height="97"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Taz-TN-aEO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="346" height="20.333333333333332"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="A great restaurant to try out" translatesAutoresizingMaskIntoConstraints="NO" id="GjI-cg-MCb">
+                                                            <rect key="frame" x="0.0" y="25.333333333333336" width="346" height="71.666666666666657"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" systemColor="labelColor"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QjH-uo-SSa" firstAttribute="leading" secondItem="iIv-5V-sQZ" secondAttribute="leadingMargin" constant="2" id="1BN-vl-HTm"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="QjH-uo-SSa" secondAttribute="trailing" constant="2" id="9Uo-uw-EAd"/>
+                                                <constraint firstItem="QjH-uo-SSa" firstAttribute="top" secondItem="iIv-5V-sQZ" secondAttribute="topMargin" constant="5" id="CQo-tE-hBb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="QjH-uo-SSa" secondAttribute="bottom" constant="1" id="XbZ-1A-JVU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="9lH-Wy-40H" id="oy7-Ow-wmc"/>
+                            <outlet property="delegate" destination="9lH-Wy-40H" id="UqB-bO-vXz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="New Restaurant" id="g1Y-nf-XeB">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="B0O-wm-zqX">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="TKs-Ou-XGn" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="Tfh-Iv-rob"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="RrX-cA-UbB" id="GwL-DW-ltN"/>
+                        <outlet property="descriptionTextView" destination="GjI-cg-MCb" id="2xR-rz-MrG"/>
+                        <outlet property="nameTextField" destination="zwC-wn-t3A" id="mVZ-Vv-LcD"/>
+                        <outlet property="phoneTextField" destination="DDr-4v-Qz8" id="JSZ-R4-TOP"/>
+                        <outlet property="photoImageView" destination="zpr-jL-Oft" id="TEQ-Cf-k31"/>
+                        <outlet property="typeTextField" destination="hKr-4m-C4y" id="yss-tG-VLQ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PZc-cR-Um1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="TKs-Ou-XGn" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-385" y="503"/>
+        </scene>
         <!--Review View Controller-->
         <scene sceneID="CGx-kH-NMa">
             <objects>
@@ -410,14 +633,14 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="otl-Ra-2tO">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0V-KI-2Fd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0V-KI-2Fd" userLabel="Close Button">
                                 <rect key="frame" x="339" y="44" width="31" height="29.333333333333329"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="xmark" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Vm6-aV-X6A" kind="unwind" unwindAction="closeWithSegue:" id="mOc-U3-gaY"/>
+                                    <segue destination="Vm6-aV-X6A" kind="unwind" unwindAction="closeWithSegue:" id="RfP-8p-0LA"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cM2-CV-JPw">
@@ -481,6 +704,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="otl-Ra-2tO" id="Vhz-pJ-KLM"/>
+                        <outlet property="closeButton" destination="a0V-KI-2Fd" id="ajP-nW-Poy"/>
                         <outletCollection property="rateButtons" destination="kyE-Ja-i4d" collectionClass="NSMutableArray" id="abU-nG-O4Y"/>
                         <outletCollection property="rateButtons" destination="GRB-3A-bt5" collectionClass="NSMutableArray" id="Bfg-YM-Ji4"/>
                         <outletCollection property="rateButtons" destination="lUK-i3-BGw" collectionClass="NSMutableArray" id="YpA-Gc-kaz"/>
@@ -511,6 +735,24 @@
             </objects>
             <point key="canvasLocation" x="-1315.3846153846152" y="-370.37914691943126"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DO9-KF-usF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bY3-H6-aZs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="p9l-IN-eiL">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="108"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9lH-Wy-40H" kind="relationship" relationship="rootViewController" id="oEU-2J-eIN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JBR-6s-JJH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1315" y="503"/>
+        </scene>
     </scenes>
     <resources>
         <image name="angry" width="78" height="103"/>
@@ -518,8 +760,13 @@
         <image name="happy" width="78" height="86"/>
         <image name="heart-tick" width="22" height="21"/>
         <image name="love" width="78" height="82"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="sad" width="78" height="87"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
