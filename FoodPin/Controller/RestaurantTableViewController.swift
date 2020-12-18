@@ -10,6 +10,9 @@ import CoreData
 
 class RestaurantTableViewController: UITableViewController {
     
+    var searchController: UISearchController?
+    var searchResults: [RestaurantMO] = []
+    
     @IBOutlet var emptyRestaurantView: UIView!
     var restaurants: [RestaurantMO] = []
     var fetchResultController: NSFetchedResultsController<RestaurantMO>!
@@ -32,6 +35,19 @@ class RestaurantTableViewController: UITableViewController {
         
         tableView.backgroundView = emptyRestaurantView
         tableView.backgroundView?.isHidden = true
+        
+        searchController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchController
+        guard let safeSearchController = searchController else {
+            return
+        }
+        safeSearchController.searchResultsUpdater = self
+        safeSearchController.obscuresBackgroundDuringPresentation = false
+        
+        safeSearchController.searchBar.placeholder = "Search restaurants..."
+        safeSearchController.searchBar.barTintColor = .white
+        safeSearchController.searchBar.backgroundImage = UIImage()
+        safeSearchController.searchBar.tintColor = FoodPin.Color.deleteRed.uiColor
         
         fetchData()
     }
@@ -58,6 +74,16 @@ class RestaurantTableViewController: UITableViewController {
         }
     }
     
+    func filterContent(for searchText: String) {
+        searchResults = restaurants.filter({ (restaurant) -> Bool in
+            if let name = restaurant.name {
+                let isMatch = name.localizedCaseInsensitiveContains(searchText)
+                return isMatch
+            }
+            return false
+        })
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -81,21 +107,44 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return restaurants.count
+        guard let safeSearchController = searchController else {
+            return 0
+        }
+        if safeSearchController.isActive {
+            return searchResults.count
+        } else {
+            return restaurants.count
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard let safeSearchController = searchController else {
+            return true 
+        }
+        if safeSearchController.isActive {
+            return false
+        } else {
+            return true
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "datacell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RestaurantTableViewCell
         
+        guard let safeSearchController = searchController else {
+            return UITableViewCell()
+        }
+        let restaurant = (safeSearchController.isActive) ? searchResults[indexPath .row] : restaurants[indexPath.row]
+        
         if let safeCell = cell {
-            safeCell.nameLabel.text = restaurants[indexPath.row].name
-            if let restaurantImage = restaurants[indexPath.row].image {
+            safeCell.nameLabel.text = restaurant.name
+            if let restaurantImage = restaurant.image {
                 safeCell.thumbnailImageView.image = UIImage(data: restaurantImage as Data)
             }
-            safeCell.locationLabel.text = restaurants[indexPath.row].location
-            safeCell.typeLabel.text = restaurants[indexPath.row].type
-            if restaurants[indexPath.row].isVisited {
+            safeCell.locationLabel.text = restaurant.location
+            safeCell.typeLabel.text = restaurant.type
+            if restaurant.isVisited {
                 cell?.checkmarkImage.isHidden = false
             } else {
                 cell?.checkmarkImage.isHidden = true
@@ -198,7 +247,11 @@ class RestaurantTableViewController: UITableViewController {
                 guard let destinationController = segue.destination as? RestaurantDetailViewController else {
                     return
                 }
-                destinationController.restaurant = restaurants[indexPath.row]
+                guard let safeSearchController = searchController else {
+                    return
+                }
+                destinationController.restaurant = (safeSearchController.isActive) ? searchResults[indexPath.row]
+                                                                               : restaurants[indexPath.row]
             }
         }
     }
@@ -242,6 +295,19 @@ extension RestaurantTableViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+    
+}
+
+    // MARK: - Search Controller methods
+
+extension RestaurantTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+            tableView.reloadData()
+        }
     }
     
 }
