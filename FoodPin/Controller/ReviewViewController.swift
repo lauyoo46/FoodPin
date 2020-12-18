@@ -12,7 +12,7 @@ class ReviewViewController: UIViewController {
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var rateButtons: [UIButton]!
     @IBOutlet var backgroundImageView: UIImageView!
-    var restaurant = Restaurant()
+    var restaurant: RestaurantMO?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,10 @@ class ReviewViewController: UIViewController {
     }
     
     func blurBackgroundImage() {
-        backgroundImageView.image = UIImage(named: restaurant.image)
+        guard let restaurantImage = restaurant?.image else {
+            return
+        }
+        backgroundImageView.image = UIImage(data: restaurantImage as Data)
         let blurEffect = UIBlurEffect(style: .light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds

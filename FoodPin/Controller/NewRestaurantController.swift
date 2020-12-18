@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class NewRestaurantController: UITableViewController,
                                UIImagePickerControllerDelegate,
                                UINavigationControllerDelegate {
+    
+    var restaurant: RestaurantMO?
     
     @IBOutlet var photoImageView: UIImageView!
     
@@ -62,6 +65,70 @@ class NewRestaurantController: UITableViewController,
                 NSAttributedString.Key.font: customFont
             ]
         }
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let alert = UIAlertController(title: "Oops", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        if let name = nameTextField.text {
+            if name == "" {
+                alert.message = "Name can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if let type = typeTextField.text {
+            if type == "" {
+                alert.message = "Type can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if let address = addressTextField.text {
+            if address == "" {
+                alert.message = "Address can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if let phone = phoneTextField.text {
+            if phone == "" {
+                alert.message = "Phone can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if let description = descriptionTextView.text {
+            if description == "" {
+                alert.message = "Description can not be blank"
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+            restaurant = RestaurantMO(context: appDelegate.persistentContainer.viewContext)
+            restaurant?.name = nameTextField.text
+            restaurant?.type = typeTextField.text
+            restaurant?.location = addressTextField.text
+            restaurant?.phone = phoneTextField.text
+            restaurant?.summary = descriptionTextView.text
+            restaurant?.isVisited = false
+            
+            if let restaurantImage = photoImageView.image {
+                restaurant?.image = restaurantImage.pngData()
+            }
+            
+            appDelegate.saveContext()
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
