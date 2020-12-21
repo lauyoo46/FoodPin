@@ -37,6 +37,8 @@
 		36A4C884258276C100D84F16 /* RestaurantDetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A4C883258276C100D84F16 /* RestaurantDetailTextCell.swift */; };
 		36B02AF82590920800F3A632 /* WalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B02AF72590920800F3A632 /* WalkthroughPageViewController.swift */; };
 		36B02AFB2590A1DF00F3A632 /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B02AFA2590A1DF00F3A632 /* WalkthroughViewController.swift */; };
+		36B02B032590F31300F3A632 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36B02B012590F31200F3A632 /* About.storyboard */; };
+		36B02B062590F34600F3A632 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36B02B052590F34600F3A632 /* Discover.storyboard */; };
 		36D4FD25258773D800BFB00F /* RestaurantDetailSeparatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D4FD24258773D800BFB00F /* RestaurantDetailSeparatorCell.swift */; };
 		36D4FD282587755200BFB00F /* RestaurantDetailMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D4FD272587755200BFB00F /* RestaurantDetailMapCell.swift */; };
 		36E395FA258A2265007112E7 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E395F9258A2265007112E7 /* RoundedTextField.swift */; };
@@ -76,6 +78,8 @@
 		36A4C883258276C100D84F16 /* RestaurantDetailTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailTextCell.swift; sourceTree = "<group>"; };
 		36B02AF72590920800F3A632 /* WalkthroughPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughPageViewController.swift; sourceTree = "<group>"; };
 		36B02AFA2590A1DF00F3A632 /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
+		36B02B022590F31200F3A632 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = FoodPin/Storyboard/Base.lproj/About.storyboard; sourceTree = "<group>"; };
+		36B02B052590F34600F3A632 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		36D4FD24258773D800BFB00F /* RestaurantDetailSeparatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailSeparatorCell.swift; sourceTree = "<group>"; };
 		36D4FD272587755200BFB00F /* RestaurantDetailMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailMapCell.swift; sourceTree = "<group>"; };
 		36E395F9258A2265007112E7 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				19ACE3A125779FC600555BE2 /* Main.storyboard */,
+				36B02B052590F34600F3A632 /* Discover.storyboard */,
+				36B02B012590F31200F3A632 /* About.storyboard */,
 				19ACE3A625779FCF00555BE2 /* LaunchScreen.storyboard */,
 				363F4467258CEF8D00C5B90F /* Onboarding.storyboard */,
 			);
@@ -274,8 +280,10 @@
 				36A4C8742582541C00D84F16 /* Rubik-BlackItalic.ttf in Resources */,
 				36A4C8792582541C00D84F16 /* Rubik-Black.ttf in Resources */,
 				36A4C8782582541C00D84F16 /* Rubik-Italic.ttf in Resources */,
+				36B02B062590F34600F3A632 /* Discover.storyboard in Resources */,
 				19ACE3A525779FCF00555BE2 /* Assets.xcassets in Resources */,
 				36A4C8762582541C00D84F16 /* Rubik-BoldItalic.ttf in Resources */,
+				36B02B032590F31300F3A632 /* About.storyboard in Resources */,
 				363F4468258CEF8D00C5B90F /* Onboarding.storyboard in Resources */,
 				19ACE3A325779FC600555BE2 /* Main.storyboard in Resources */,
 				36A4C8772582541C00D84F16 /* Rubik-Medium.ttf in Resources */,
@@ -350,6 +358,14 @@
 				19ACE3A725779FCF00555BE2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		36B02B012590F31200F3A632 /* About.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36B02B022590F31200F3A632 /* Base */,
+			);
+			name = About.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

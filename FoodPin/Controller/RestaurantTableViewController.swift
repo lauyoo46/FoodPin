@@ -47,7 +47,7 @@ class RestaurantTableViewController: UITableViewController {
         safeSearchController.searchBar.placeholder = "Search restaurants..."
         safeSearchController.searchBar.barTintColor = .white
         safeSearchController.searchBar.backgroundImage = UIImage()
-        safeSearchController.searchBar.tintColor = FoodPin.Color.deleteRed.uiColor
+        safeSearchController.searchBar.tintColor = FoodPin.Color.myRed.uiColor
         
         fetchData()
     }
@@ -210,9 +210,9 @@ class RestaurantTableViewController: UITableViewController {
             completionHandler(true)
         }
         
-        deleteAction.backgroundColor = FoodPin.Color.deleteRed.uiColor
+        deleteAction.backgroundColor = FoodPin.Color.myRed.uiColor
         deleteAction.image = UIImage(systemName: "trash")
-        shareAction.backgroundColor = FoodPin.Color.shareOrange.uiColor
+        shareAction.backgroundColor = FoodPin.Color.myOrange.uiColor
         shareAction.image = UIImage(systemName: "square.and.arrow.up")
         
         let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction, shareAction])
@@ -238,9 +238,9 @@ class RestaurantTableViewController: UITableViewController {
             completionHandler(true)
         }
         
-        checkInAction.backgroundColor = FoodPin.Color.checkGreen.uiColor
+        checkInAction.backgroundColor = FoodPin.Color.myGreen.uiColor
         checkInAction.image = UIImage(systemName: "checkmark")
-        uncheckAction.backgroundColor = FoodPin.Color.checkGreen.uiColor
+        uncheckAction.backgroundColor = FoodPin.Color.myGreen.uiColor
         uncheckAction.image = UIImage(systemName: "arrow.uturn.left")
         
         var swipeConfiguration: UISwipeActionsConfiguration = UISwipeActionsConfiguration(actions: [])

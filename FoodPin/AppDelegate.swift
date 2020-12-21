@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorImage = backButtonImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
         
+        UITabBar.appearance().tintColor = FoodPin.Color.myRed.uiColor
+        UITabBar.appearance().barTintColor = FoodPin.Color.myWhite.uiColor
+        
         return true
     }
     
