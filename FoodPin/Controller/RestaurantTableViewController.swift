@@ -91,6 +91,20 @@ class RestaurantTableViewController: UITableViewController {
         navigationController?.navigationBar.barStyle = .default
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if UserDefaults.standard.bool(forKey: "hasViewedWalkthrough") {
+            return
+        }
+        
+        let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        if let walkthroughViewController = storyboard.instantiateViewController(identifier: "WalkthroughViewController")
+            as? WalkthroughViewController {
+            present(walkthroughViewController, animated: true, completion: nil)
+        }
+        
+    }
+    
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
     
     // MARK: - Table view data source
