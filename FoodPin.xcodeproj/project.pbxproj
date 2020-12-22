@@ -22,6 +22,8 @@
 		3661195C2580BF1E0026DFB6 /* FoodPinColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661195B2580BF1E0026DFB6 /* FoodPinColor.swift */; };
 		3661196C2580D0C90026DFB6 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661196B2580D0C90026DFB6 /* RestaurantDetailViewController.swift */; };
 		366119702580E6630026DFB6 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3661196F2580E6630026DFB6 /* Restaurant.swift */; };
+		3663CD892591E57800C4C26A /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663CD882591E57800C4C26A /* AboutTableViewController.swift */; };
+		3663CD8C2591FA9E00C4C26A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663CD8B2591FA9E00C4C26A /* WebViewController.swift */; };
 		36A4C8712582541C00D84F16 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36A4C8672582541B00D84F16 /* Rubik-Light.ttf */; };
 		36A4C8722582541C00D84F16 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36A4C8682582541B00D84F16 /* Rubik-MediumItalic.ttf */; };
 		36A4C8732582541C00D84F16 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36A4C8692582541B00D84F16 /* Rubik-Regular.ttf */; };
@@ -63,6 +65,8 @@
 		3661195B2580BF1E0026DFB6 /* FoodPinColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPinColor.swift; sourceTree = "<group>"; };
 		3661196B2580D0C90026DFB6 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		3661196F2580E6630026DFB6 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		3663CD882591E57800C4C26A /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
+		3663CD8B2591FA9E00C4C26A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		36A4C8672582541B00D84F16 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
 		36A4C8682582541B00D84F16 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
 		36A4C8692582541B00D84F16 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				363F446A258CFDB600C5B90F /* WalkthroughContentViewController.swift */,
 				36B02AF72590920800F3A632 /* WalkthroughPageViewController.swift */,
 				36B02AFA2590A1DF00F3A632 /* WalkthroughViewController.swift */,
+				3663CD882591E57800C4C26A /* AboutTableViewController.swift */,
+				3663CD8B2591FA9E00C4C26A /* WebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -319,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				199657C52578E03100A4A3AE /* RestaurantTableViewCell.swift in Sources */,
+				3663CD8C2591FA9E00C4C26A /* WebViewController.swift in Sources */,
 				36A4C881258273E900D84F16 /* RestaurantDetailIconTextCell.swift in Sources */,
 				36221FD22588C68B007D3882 /* ReviewViewController.swift in Sources */,
 				36D4FD282587755200BFB00F /* RestaurantDetailMapCell.swift in Sources */,
@@ -329,6 +336,7 @@
 				36221FCD258793F0007D3882 /* MapViewController.swift in Sources */,
 				36B02AFB2590A1DF00F3A632 /* WalkthroughViewController.swift in Sources */,
 				366119702580E6630026DFB6 /* Restaurant.swift in Sources */,
+				3663CD892591E57800C4C26A /* AboutTableViewController.swift in Sources */,
 				19ACE39E25779FC600555BE2 /* SceneDelegate.swift in Sources */,
 				3661196C2580D0C90026DFB6 /* RestaurantDetailViewController.swift in Sources */,
 				36A4C87E258268EF00D84F16 /* RestaurantDetailHeaderView.swift in Sources */,
