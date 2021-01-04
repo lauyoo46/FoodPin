@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YsY-9H-K3K">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,18 +11,41 @@
         <!--About-->
         <scene sceneID="ovy-bb-gMr">
             <objects>
-                <tableViewController id="bdP-IR-CkF" sceneMemberID="viewController">
+                <tableViewController id="bdP-IR-CkF" customClass="AboutTableViewController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="oi3-8h-s6x">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="N42-8B-Vwo">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foodpin-logo" translatesAutoresizingMaskIntoConstraints="NO" id="NN5-nx-hdi">
+                                    <rect key="frame" x="136" y="33.5" width="142" height="53"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="NN5-nx-hdi" firstAttribute="centerY" secondItem="N42-8B-Vwo" secondAttribute="centerY" id="ERS-dE-VbO"/>
+                                <constraint firstItem="NN5-nx-hdi" firstAttribute="centerX" secondItem="N42-8B-Vwo" secondAttribute="centerX" id="z49-Py-gV8"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vOp-g1-HSG">
-                                <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutCell" textLabel="vYL-fx-kMC" style="IBUITableViewCellStyleDefault" id="vOp-g1-HSG">
+                                <rect key="frame" x="0.0" y="148" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vOp-g1-HSG" id="S7N-U0-YWB">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vYL-fx-kMC">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -30,10 +55,48 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="About" id="PnL-b4-n8V"/>
+                    <connections>
+                        <segue destination="ZLn-Gs-M1r" kind="show" identifier="showWebView" id="ecQ-3M-Uml"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bT7-0l-jhZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-386" y="2118"/>
+            <point key="canvasLocation" x="-1029" y="2117"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="Ss3-CP-yZL">
+            <objects>
+                <viewController id="ZLn-Gs-M1r" customClass="WebViewController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tkW-GO-weg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zj2-gi-poa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="smp-ho-TKy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zj2-gi-poa" firstAttribute="trailing" secondItem="smp-ho-TKy" secondAttribute="trailing" id="KTZ-Y1-lml"/>
+                            <constraint firstItem="zj2-gi-poa" firstAttribute="top" secondItem="tkW-GO-weg" secondAttribute="top" id="hDh-LT-WuA"/>
+                            <constraint firstAttribute="bottom" secondItem="zj2-gi-poa" secondAttribute="bottom" id="hMc-vU-ShV"/>
+                            <constraint firstItem="zj2-gi-poa" firstAttribute="leading" secondItem="smp-ho-TKy" secondAttribute="leading" id="oSc-Pd-nw3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="egU-EF-50o"/>
+                    <connections>
+                        <outlet property="webView" destination="zj2-gi-poa" id="5E2-3a-jIc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ttn-cj-GvK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="285.50724637681162" y="2116.7410714285716"/>
         </scene>
         <!--About-->
         <scene sceneID="SSx-oU-oNM">
@@ -41,7 +104,7 @@
                 <navigationController id="YsY-9H-K3K" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="About" image="about" id="xZv-co-Mgd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0nW-pf-9XF">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -55,6 +118,7 @@
     </scenes>
     <resources>
         <image name="about" width="23" height="21"/>
+        <image name="foodpin-logo" width="142" height="53"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
