@@ -13,6 +13,7 @@ enum Color {
     case myRed
     case myGreen
     case myWhite
+    case myFavorite
     
     var uiColor: UIColor {
         switch self {
@@ -25,6 +26,8 @@ enum Color {
             return UIColor(red: 35.0/255.0, green: 214.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         case .myWhite:
             return UIColor(red: 250.0/255.0, green: 250.0/255.0, blue: 250.0/250.0, alpha: 1.0)
+        case .myFavorite:
+            return UIColor(red: 255.0/255.0, green: 127.0/255.0, blue: 80.0/255.0, alpha: 1.0)
         }
     }
 }
