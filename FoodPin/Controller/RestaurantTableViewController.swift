@@ -149,7 +149,7 @@ class RestaurantTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "datacell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? RestaurantTableViewCell
-    
+        
         let restaurant = restaurants[indexPath.row]
         
         if let safeCell = cell {
@@ -172,7 +172,7 @@ class RestaurantTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
-                            -> UISwipeActionsConfiguration? {
+    -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completionHandler) in
             
             if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
@@ -222,7 +222,7 @@ class RestaurantTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
-                            -> UISwipeActionsConfiguration? {
+    -> UISwipeActionsConfiguration? {
         let checkInAction = UIContextualAction(style: .normal, title: "Check in") {(_, _, completionHandler) in
             if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
                 safeCell.checkmarkImage.isHidden = false
@@ -250,15 +250,36 @@ class RestaurantTableViewController: UITableViewController {
         uncheckAction.backgroundColor = FoodPin.Color.myGreen.uiColor
         uncheckAction.image = UIImage(systemName: "arrow.uturn.left")
         
-        var swipeConfiguration: UISwipeActionsConfiguration = UISwipeActionsConfiguration(actions: [])
-        if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
-            if safeCell.checkmarkImage.isHidden == false {
-                swipeConfiguration = UISwipeActionsConfiguration(actions: [uncheckAction])
-            } else {
-                swipeConfiguration = UISwipeActionsConfiguration(actions: [checkInAction])
+        let favoriteAction = UIContextualAction(style: .normal, title: "Favorite") {(_, _, completionHandler) in
+            self.restaurants[indexPath.row].favorite = true
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                appDelegate.saveContext()
             }
+            completionHandler(true)
         }
         
+        let unfavoriteAction = UIContextualAction(style: .normal, title: "Unfavorite") { (_, _, completionHandler) in
+            self.restaurants[indexPath.row].favorite = false
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                appDelegate.saveContext()
+            }
+            completionHandler(true)
+        }
+        
+        favoriteAction.backgroundColor = FoodPin.Color.myFavorite.uiColor
+        favoriteAction.image = UIImage(systemName: "star")
+        unfavoriteAction.backgroundColor = FoodPin.Color.myFavorite.uiColor
+        unfavoriteAction.image = UIImage(systemName: "star.slash")
+        
+        var actions: [UIContextualAction] = []
+        
+        if let safeCell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell {
+            actions.append(safeCell.checkmarkImage.isHidden == false ? uncheckAction : checkInAction)
+        }
+        
+        actions.append(restaurants[indexPath.row].favorite == true ? unfavoriteAction : favoriteAction)
+        
+        let swipeConfiguration: UISwipeActionsConfiguration = UISwipeActionsConfiguration(actions: actions)
         return swipeConfiguration
     }
     
@@ -274,7 +295,7 @@ class RestaurantTableViewController: UITableViewController {
     }
 }
 
-    // MARK: - NSFetchedResultsControllerDelegate methods
+// MARK: - NSFetchedResultsControllerDelegate methods
 
 extension RestaurantTableViewController: NSFetchedResultsControllerDelegate {
     
@@ -301,7 +322,7 @@ extension RestaurantTableViewController: NSFetchedResultsControllerDelegate {
                 tableView.reloadRows(at: [indexPath], with: .fade)
             }
         default:
-                tableView.reloadData()
+            tableView.reloadData()
         }
         if let fetchedObjects = controller.fetchedObjects {
             if let safeRestaurants = fetchedObjects as? [RestaurantMO] {
@@ -316,7 +337,7 @@ extension RestaurantTableViewController: NSFetchedResultsControllerDelegate {
     
 }
 
-    // MARK: - UISearchBarDelegate methods
+// MARK: - UISearchBarDelegate methods
 
 extension RestaurantTableViewController: UISearchBarDelegate {
     
