@@ -171,6 +171,94 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView,
+                            contextMenuConfigurationForRowAt indexPath: IndexPath,
+                            point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let configuration = UIContextMenuConfiguration(identifier: indexPath.row as NSCopying,
+                                                       previewProvider: {
+                        guard let restaurantDetailViewController =
+                                self.storyboard?.instantiateViewController(
+                                    identifier: "RestaurantDetailViewController")
+                                as? RestaurantDetailViewController else {
+                            return nil
+                        }
+                        let selectedRestaurant = self.restaurants[indexPath.row]
+                        restaurantDetailViewController.restaurant = selectedRestaurant
+                        
+                        return restaurantDetailViewController
+                       }, actionProvider: { _ in
+                        
+                        let checkInAction = UIAction(title: "Check-in", image: UIImage(systemName: "checkmark")) { _ in
+                            let cell = tableView.cellForRow(at: indexPath) as? RestaurantTableViewCell
+                            
+                            guard let safeCell = cell else {
+                                return
+                            }
+                            
+                            self.restaurants[indexPath.row].isVisited = self.restaurants[indexPath.row].isVisited ? false : true
+                            safeCell.checkmarkImage.isHidden = self.restaurants[indexPath.row] .isVisited ? false : true
+                        }
+                        
+                        let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                            
+                            guard let restaurantName = self.restaurants[indexPath.row].name else {
+                                return
+                            }
+                            
+                            let defaultText = NSLocalizedString("Just checking in at ", comment: "Just checking in at") + restaurantName
+                            let activityController: UIActivityViewController
+                            
+                            if let restaurantImage = self.restaurants[indexPath.row].image,
+                               let imageToShare = UIImage(data: restaurantImage as Data) {
+                                activityController = UIActivityViewController(activityItems: [defaultText, imageToShare],
+                                                                              applicationActivities: nil)
+                            } else {
+                                activityController = UIActivityViewController(activityItems: [defaultText], applicationActivities: nil)
+                            }
+                            self.present(activityController, animated: true, completion: nil)
+                        }
+                        
+                        let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { _ in
+                            
+                            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                                let context = appDelegate.persistentContainer.viewContext
+                                let restaurantToDelete = self.fetchResultController.object(at: indexPath)
+                                context.delete(restaurantToDelete)
+                                appDelegate.saveContext()
+                            }
+                        }
+                        
+                        return UIMenu(title: "", children: [checkInAction, shareAction, deleteAction])
+                        
+                       })
+        return configuration
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                            animator: UIContextMenuInteractionCommitAnimating) {
+        
+        guard let selectedRow = configuration.identifier as? Int else {
+            print("Failed to retrieve the row number")
+            return
+        }
+        
+        guard let restaurantDetailViewController = self.storyboard?.instantiateViewController(
+                withIdentifier: "RestaurantDetailViewController")
+                as? RestaurantDetailViewController else {
+            return
+        }
+        
+        let selectedRestaurant = self.restaurants[selectedRow]
+        restaurantDetailViewController.restaurant = selectedRestaurant
+        
+        animator.preferredCommitStyle = .pop
+        animator.addCompletion {
+            self.show(restaurantDetailViewController, sender: self)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
     -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {(_, _, completionHandler) in

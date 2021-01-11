@@ -26,6 +26,7 @@ class WalkthroughViewController: UIViewController {
         
         UserDefaults.standard.set(true, forKey: "hasViewedWalkthrough")
         dismiss(animated: true, completion: nil)
+        createQuickActions()
         
     }
     
@@ -38,6 +39,7 @@ class WalkthroughViewController: UIViewController {
                 
             case 2:
                 UserDefaults.standard.set(true, forKey: "hasViewedWalkthrough")
+                createQuickActions()
                 dismiss(animated: true, completion: nil)
                 
             default: break
@@ -63,6 +65,32 @@ class WalkthroughViewController: UIViewController {
             default: break
             }
             pageControl.currentPage = index
+        }
+        
+    }
+    
+    func createQuickActions() {
+        
+        if traitCollection.forceTouchCapability == UIForceTouchCapability.available {
+            if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                
+                let allRestaurantsShortcut = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenRestaurants",
+                                                              localizedTitle: "Show Restaurants",
+                                                              localizedSubtitle: nil,
+                                                              icon: UIApplicationShortcutIcon(templateImageName: "favorite"),
+                                                              userInfo: nil)
+                let favoriteRestaurantsShortcut = UIApplicationShortcutItem(type: "\(bundleIdentifier).OpenFavorites",
+                                                              localizedTitle: "Show Favorites",
+                                                              localizedSubtitle: nil,
+                                                              icon: UIApplicationShortcutIcon(templateImageName: "discover"),
+                                                              userInfo: nil)
+                let newRestaurantShortcut = UIApplicationShortcutItem(type: "\(bundleIdentifier).NewRestaurant",
+                                                              localizedTitle: "New Restaurant",
+                                                              localizedSubtitle: nil,
+                                                              icon: UIApplicationShortcutIcon(type: .add),
+                                                              userInfo: nil)
+                UIApplication.shared.shortcutItems = [allRestaurantsShortcut, favoriteRestaurantsShortcut, newRestaurantShortcut]
+            }
         }
         
     }

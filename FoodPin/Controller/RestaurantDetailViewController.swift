@@ -40,8 +40,9 @@ class RestaurantDetailViewController: UIViewController {
         
         headerView.headerImageView.image = UIImage(data: (safeRestaurant.image ?? Data()) as Data)
         headerView.heartImageView.isHidden = safeRestaurant.isVisited ? false : true
-        headerView.ratingImageView.image = UIImage(named: safeRestaurant.rating ?? "")
-        
+        if let safeRating = safeRestaurant.rating {
+            headerView.ratingImageView.image = UIImage(named: safeRating)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,27 +70,26 @@ class RestaurantDetailViewController: UIViewController {
     @IBAction func close(segue: UIStoryboardSegue) {}
     
     @IBAction func rateRestaurant(segue: UIStoryboardSegue) {
-        dismiss(animated: true, completion: {
-            if let rating = segue.identifier {
-                self.restaurant?.rating = rating
-                self.headerView.ratingImageView.image = UIImage(named: rating)
-                
-                if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-                    appDelegate.saveContext()
-                }
-                
-                let scaleTransform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
-                self.headerView.ratingImageView.transform = scaleTransform
-                self.headerView.ratingImageView.alpha = 0
-                
-                UIView.animate(withDuration: 0.4, delay: 0,
-                               usingSpringWithDamping: 0.3, initialSpringVelocity: 0.7,
-                               options: [], animations: {
-                    self.headerView.ratingImageView.transform = .identity
-                    self.headerView.ratingImageView.alpha = 1
-                }, completion: nil)
+       
+        if let rating = segue.identifier {
+            self.restaurant?.rating = rating
+            self.headerView.ratingImageView.image = UIImage(named: rating)
+            
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                appDelegate.saveContext()
             }
-        })
+            
+            let scaleTransform = CGAffineTransform.init(scaleX: 0.1, y: 0.1)
+            self.headerView.ratingImageView.transform = scaleTransform
+            self.headerView.ratingImageView.alpha = 0
+            
+            UIView.animate(withDuration: 0.4, delay: 0,
+                           usingSpringWithDamping: 0.3, initialSpringVelocity: 0.7,
+                           options: [], animations: {
+                            self.headerView.ratingImageView.transform = .identity
+                            self.headerView.ratingImageView.alpha = 1
+                           }, completion: nil)
+        }
     }
     
 }
