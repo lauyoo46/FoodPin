@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class RestaurantTableViewController: UITableViewController {
     
@@ -49,6 +50,7 @@ class RestaurantTableViewController: UITableViewController {
         safeSearchController.searchBar.tintColor = FoodPin.Color.myRed.uiColor
         
         fetchData()
+        prepareNotification()
     }
     
     func fetchData() {
@@ -109,6 +111,64 @@ class RestaurantTableViewController: UITableViewController {
             as? WalkthroughViewController {
             present(walkthroughViewController, animated: true, completion: nil)
         }
+        
+    }
+    
+    func prepareNotification() {
+        
+        if restaurants.isEmpty {
+            return
+        }
+        
+        let randomNum = Int.random(in: 0..<restaurants.count)
+        let suggestedRestaurant = restaurants[randomNum]
+        
+        guard let suggestedName = suggestedRestaurant.name,
+              let suggestedLocation = suggestedRestaurant.location else {
+            return
+        }
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Restaurant Recommendation"
+        content.subtitle = "Try new food today"
+        content.body = """
+            I recommend you to check out \(suggestedName).
+            The restaurant is one of your favorites. It is located at \(suggestedLocation).
+            Would you like to give it a try?
+            """
+        content.sound = UNNotificationSound.default
+        if let suggestedPhone = suggestedRestaurant.phone {
+            content.userInfo = ["phone": suggestedPhone]
+        }
+        
+        let tempDirURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
+        let tempFileURL = tempDirURL.appendingPathComponent("suggested-restaurant.jpg")
+        
+        if let suggestedImage = suggestedRestaurant.image {
+            if let image = UIImage(data: suggestedImage as Data) {
+                try? image.jpegData(compressionQuality: 1.0)?.write(to: tempFileURL)
+                if let restaurantImage = try? UNNotificationAttachment(identifier: "restaurantImage", url: tempFileURL, options: nil) {
+                    content.attachments = [restaurantImage]
+                }
+            }
+        }
+        
+        let categoryIdentifer = "foodpin.restaurantaction"
+        let makeReservationAction = UNNotificationAction(identifier: "foodpin.makeReservation",
+                                                         title: "Reserve a table",
+                                                         options: [.foreground])
+        let cancelAction = UNNotificationAction(identifier: "foodpin.cancel", title: "Later", options: [])
+        let category = UNNotificationCategory(identifier: categoryIdentifer,
+                                              actions: [makeReservationAction, cancelAction],
+                                              intentIdentifiers: [],
+                                              options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+        content.categoryIdentifier = categoryIdentifer
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+        let request = UNNotificationRequest(identifier: "foodpin.restaurantSuggestion", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
     }
     
